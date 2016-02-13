@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using StudentSystem.Web.Models;
 using StudentSystem.Models;
+using StudentSystem.Data;
 
 namespace StudentSystem.Web
 {

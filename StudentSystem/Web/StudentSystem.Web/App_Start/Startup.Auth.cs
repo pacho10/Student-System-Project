@@ -8,6 +8,7 @@ using Owin;
 using System;
 using StudentSystem.Web.Models;
 using StudentSystem.Models;
+using StudentSystem.Data;
 
 namespace StudentSystem.Web
 {
