@@ -1,4 +1,4 @@
-﻿using StudentSystem.Data.Repositories;
+﻿using StudentSystem.Data.Common;
 using StudentSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -9,15 +9,26 @@ using System.Threading.Tasks;
 
 namespace StudentSystem.Data
 {
-    public interface IDbRepository
+    public interface IDbRepository<T> : IDbRepository<T, int>
+        where T : BaseModel<int>
     {
-        DbContext Context { get; }
-        IRepository<User> Users { get; }
-        IRepository<Category> Categories { get; }
-        IRepository<Course> Courses { get; }
-        IRepository<Material> Materials { get; }
-        IRepository<Mark> Marks { get; }
-        void Dispose();
-        int SaveChanges();
+    }
+
+    public interface IDbRepository<T, in TKey>
+        where T : BaseModel<TKey>
+    {
+        IQueryable<T> All();
+
+        IQueryable<T> AllWithDeleted();
+
+        T GetById(TKey id);
+
+        void Add(T entity);
+
+        void Delete(T entity);
+
+        void HardDelete(T entity);
+
+        void Save();
     }
 }

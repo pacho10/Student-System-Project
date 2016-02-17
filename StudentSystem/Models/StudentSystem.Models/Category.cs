@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StudentSystem.Data.Common;
 
 namespace StudentSystem.Models
 {
-    public class Category
+    public class Category : BaseModel<int>
     {
         private ICollection<Course> courses;
 
@@ -15,9 +16,6 @@ namespace StudentSystem.Models
         {
             this.Courses = new HashSet<Course>();
         }
-
-        [Key]
-        public int Id { get; set; }
 
         public string Name { get; set; }
 

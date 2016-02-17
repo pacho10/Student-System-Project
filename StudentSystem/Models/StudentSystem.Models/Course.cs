@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentSystem.Data.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace StudentSystem.Models
 {
-    public class Course
+    public class Course : BaseModel<int>
     {
         private ICollection<User> users;
         private ICollection<Material> materials;
@@ -16,9 +17,6 @@ namespace StudentSystem.Models
             this.Users = new HashSet<User>();
             this.Materials = new HashSet<Material>();
         }
-
-        [Key]
-        public int Id { get; set; }
 
         public string Title { get; set; }
 

@@ -1,4 +1,4 @@
-﻿using StudentSystem.Data.Repositories;
+﻿using StudentSystem.Data.Common;
 using StudentSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -9,103 +9,58 @@ using System.Threading.Tasks;
 
 namespace StudentSystem.Data
 {
-    public class DbRepository : IDbRepository
+    public class DbRepository<T> : IDbRepository<T>
+        where T : BaseModel<int>
     {
-        private readonly DbContext context;
-
-        private readonly Dictionary<Type, object> repositories = new Dictionary<Type, object>();
-
         public DbRepository(DbContext context)
         {
-            this.context = context;
-        }
-
-        public IRepository<Category> Categories
-        {
-            get
+            if (context == null)
             {
-                return this.GetRepository<Category>();
-            }
-        }
-
-        public IRepository<Course> Courses
-        {
-            get
-            {
-                return this.GetRepository<Course>();
-            }
-        }
-
-        public IRepository<Material> Materials
-        {
-            get
-            {
-                return this.GetRepository<Material>();
-            }
-        }
-
-        public IRepository<Mark> Marks
-        {
-            get
-            {
-                return this.GetRepository<Mark>();
-            }
-        }
-
-        public IRepository<User> Users
-        {
-            get
-            {
-                return this.GetRepository<User>();
-            }
-        }
-
-        public DbContext Context
-        {
-            get
-            {
-                return this.context;
-            }
-        }
-
-        /// <summary>
-        /// Saves all changes made in this context to the underlying database.
-        /// </summary>
-        /// <returns>
-        /// The number of objects written to the underlying database.
-        /// </returns>
-        /// <exception cref="T:System.InvalidOperationException">Thrown if the context has been disposed.</exception>
-        public int SaveChanges()
-        {
-            return this.context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (this.context != null)
-                {
-                    this.context.Dispose();
-                }
-            }
-        }
-
-        private IRepository<T> GetRepository<T>() where T : class
-        {
-            if (!this.repositories.ContainsKey(typeof(T)))
-            {
-                var type = typeof(GenericRepository<T>);
-
-                this.repositories.Add(typeof(T), Activator.CreateInstance(type, this.context));
+                throw new ArgumentException("An instance of DbContext is required to use this repository.");
             }
 
-            return (IRepository<T>)this.repositories[typeof(T)];
+            this.Context = context;
+            this.DbSet = this.Context.Set<T>();
+        }
+
+        private IDbSet<T> DbSet { get; set; }
+
+        private DbContext Context { get; set; }
+
+        public IQueryable<T> All()
+        {
+            return this.DbSet.Where(x => !x.IsDeleted);
+        }
+
+        public IQueryable<T> AllWithDeleted()
+        {
+            return this.DbSet;
+        }
+
+        public T GetById(int id)
+        {
+            return this.All().FirstOrDefault(x => x.Id == id);
+        }
+
+        public void Add(T entity)
+        {
+            this.DbSet.Add(entity);
+        }
+
+        public void Delete(T entity)
+        {
+            entity.IsDeleted = true;
+            entity.DeletedOn = DateTime.Now;
+        }
+
+        public void HardDelete(T entity)
+        {
+            this.DbSet.Remove(entity);
+        }
+
+        public void Save()
+        {
+            this.Context.SaveChanges();
         }
     }
 }
