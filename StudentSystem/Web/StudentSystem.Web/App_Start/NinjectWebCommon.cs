@@ -10,6 +10,7 @@ namespace StudentSystem.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using StudentSystem.Data;
 
     public static class NinjectWebCommon 
     {
@@ -61,6 +62,8 @@ namespace StudentSystem.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind(typeof(IApplicationDbContext)).To(typeof(ApplicationDbContext));
+            kernel.Bind(typeof(IDbRepository<>)).To(typeof(DbRepository<>));
         }        
     }
 }

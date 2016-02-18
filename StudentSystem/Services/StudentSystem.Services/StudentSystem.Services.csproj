@@ -39,7 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryService.cs" />
+    <Compile Include="ICategoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\StudentSystem.Data\StudentSystem.Data.csproj">
+      <Project>{adced24d-a628-4d0e-ac25-be50ef4962c3}</Project>
+      <Name>StudentSystem.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\StudentSystem.Models\StudentSystem.Models.csproj">
+      <Project>{4167392e-eb90-4661-96c8-bd95afc1ae9b}</Project>
+      <Name>StudentSystem.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
