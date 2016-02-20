@@ -1,0 +1,14 @@
+﻿@model StudentSystem.Web.ViewModel.CourseDetailViewModel
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h3>@Model.Title</h3>
+<h6>@Model.Category</h6>
+<div>
+    @foreach (var item in Model.Materials)
+    {
+        <div>@item.Name</div>
+    }
+</div>
+

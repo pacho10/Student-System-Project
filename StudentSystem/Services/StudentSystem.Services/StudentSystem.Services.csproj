@@ -40,10 +40,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryService.cs" />
+    <Compile Include="CourseService.cs" />
     <Compile Include="ICategoryService.cs" />
+    <Compile Include="ICourseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\StudentSystem.Data.Common\StudentSystem.Data.Common.csproj">
+      <Project>{bfe14efe-c5d8-44c4-8636-fcf16e3b1884}</Project>
+      <Name>StudentSystem.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\StudentSystem.Data\StudentSystem.Data.csproj">
       <Project>{adced24d-a628-4d0e-ac25-be50ef4962c3}</Project>
       <Name>StudentSystem.Data</Name>

@@ -1,4 +1,5 @@
-﻿using StudentSystem.Web.App_Start;
+﻿using StudentSystem.Data;
+using StudentSystem.Web.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace StudentSystem.Web
 
             var autoMapperConfig = new AutoMapperConfig();
             autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
+
+            //ApplicationDbContext.Create().Database.Initialize(true);
         }
     }
 }

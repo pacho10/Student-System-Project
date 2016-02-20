@@ -11,6 +11,9 @@ namespace StudentSystem.Web.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using StudentSystem.Data;
+    using StudentSystem.Services;
+    using StudentSystem.Models;
+    using System.Data.Entity;
 
     public static class NinjectWebCommon 
     {
@@ -62,8 +65,12 @@ namespace StudentSystem.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(typeof(IApplicationDbContext)).To(typeof(ApplicationDbContext));
+            kernel.Bind(typeof(DbContext)).To(typeof(ApplicationDbContext));
+            //kernel.Bind(typeof(IDbRepository<Category>)).To(typeof(DbRepository<Category>));
+            //kernel.Bind(typeof(IDbRepository<Course>)).To(typeof(DbRepository<Course>));
             kernel.Bind(typeof(IDbRepository<>)).To(typeof(DbRepository<>));
+            kernel.Bind(typeof(ICourseService)).To(typeof(CourseService));
+            kernel.Bind(typeof(ICategoryService)).To(typeof(CategoryService));
         }        
     }
 }
