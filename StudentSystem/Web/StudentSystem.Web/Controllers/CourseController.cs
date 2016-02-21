@@ -7,10 +7,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using StudentSystem.Web.Infrastructure;
+using AutoMapper.QueryableExtensions;
 
 namespace StudentSystem.Web.Controllers
 {
-    public class CourseController : Controller
+    public class CourseController : BaseController
     {
         private IDbRepository<Course> courses;
 
@@ -28,7 +29,7 @@ namespace StudentSystem.Web.Controllers
         public ActionResult Detail(int id = 1)
         {
             var course = this.courses.GetById(id);
-            var viewModel = new CourseDetailViewModel()
+            var viewModel = new CourseDetailViewModel
             {
                 Title = course.Title,
                 Category = course.Category.Name,

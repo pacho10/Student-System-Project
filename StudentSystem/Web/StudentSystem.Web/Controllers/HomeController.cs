@@ -9,7 +9,7 @@ using StudentSystem.Web.Infrastructure;
 
 namespace StudentSystem.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         //private ICategoryService categories;
         private ICourseService courses;
