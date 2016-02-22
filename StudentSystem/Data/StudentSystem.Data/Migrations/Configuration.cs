@@ -42,32 +42,32 @@ namespace StudentSystem.Data.Migrations
             {
                 List<Category> categories = new List<Category>()
                 {
-                    new Category{ Name = "C# Programing", CreatedOn = DateTime.Now, IsDeleted = false },
-                    new Category{ Name = "Java Programing", CreatedOn = DateTime.Now, IsDeleted = false },
-                    new Category{ Name = "Windows Administration", CreatedOn = DateTime.Now, IsDeleted = false },
-                    new Category{ Name = "Linyx Administration", CreatedOn = DateTime.Now, IsDeleted = false },
-                    new Category{ Name = "Quality Assurance", CreatedOn = DateTime.Now, IsDeleted = false },
+                    new Category{ Name = "C# Programing", CreatedOn = DateTime.UtcNow, IsDeleted = false },
+                    new Category{ Name = "Java Programing", CreatedOn = DateTime.UtcNow, IsDeleted = false },
+                    new Category{ Name = "Windows Administration", CreatedOn = DateTime.UtcNow, IsDeleted = false },
+                    new Category{ Name = "Linyx Administration", CreatedOn = DateTime.UtcNow, IsDeleted = false },
+                    new Category{ Name = "Quality Assurance", CreatedOn = DateTime.UtcNow, IsDeleted = false },
                 };
 
                 context.Categories.AddOrUpdate(categories.ToArray());
 
                 List<Course> courses = new List<Course>()
                 {
-                    new Course{ Category = categories[0], CreatedOn = DateTime.Now, IsDeleted = false, 
+                    new Course{ Category = categories[0], CreatedOn = DateTime.UtcNow, IsDeleted = false, 
                         Title = "C# Part1", Type = CourseType.Public},
-                    new Course{ Category = categories[0], CreatedOn = DateTime.Now, IsDeleted = false, 
+                    new Course{ Category = categories[0], CreatedOn = DateTime.UtcNow, IsDeleted = false, 
                         Title = "C# Part2", Type = CourseType.Public},
-                    new Course{ Category = categories[0], CreatedOn = DateTime.Now, IsDeleted = false, 
+                    new Course{ Category = categories[0], CreatedOn = DateTime.UtcNow, IsDeleted = false, 
                         Title = "C# OOP", Type = CourseType.Public},
-                    new Course{ Category = categories[1], CreatedOn = DateTime.Now, IsDeleted = false, 
+                    new Course{ Category = categories[1], CreatedOn = DateTime.UtcNow, IsDeleted = false, 
                         Title = "Java Basics", Type = CourseType.Public},
-                    new Course{ Category = categories[1], CreatedOn = DateTime.Now, IsDeleted = false, 
+                    new Course{ Category = categories[1], CreatedOn = DateTime.UtcNow, IsDeleted = false, 
                         Title = "Java Advanced", Type = CourseType.Public},
-                    new Course{ Category = categories[2], CreatedOn = DateTime.Now, IsDeleted = false, 
+                    new Course{ Category = categories[2], CreatedOn = DateTime.UtcNow, IsDeleted = false, 
                         Title = "Active Directory", Type = CourseType.Public},
-                    new Course{ Category = categories[3], CreatedOn = DateTime.Now, IsDeleted = false, 
+                    new Course{ Category = categories[3], CreatedOn = DateTime.UtcNow, IsDeleted = false, 
                         Title = "File Systems", Type = CourseType.Public},
-                         new Course{ Category = categories[4], CreatedOn = DateTime.Now, IsDeleted = false, 
+                         new Course{ Category = categories[4], CreatedOn = DateTime.UtcNow, IsDeleted = false, 
                         Title = "Quality Assurance Part1", Type = CourseType.Public},
                 };
 

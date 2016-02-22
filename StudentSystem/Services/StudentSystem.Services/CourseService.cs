@@ -26,5 +26,22 @@ namespace StudentSystem.Services
         {
             return this.courses.GetById(id);
         }
+
+        public void Add(Course course)
+        {
+            this.courses.Add(course);
+            this.courses.Save();
+        }
+
+        public void Update(Course course)
+        {
+            this.courses.Update(course);
+            this.courses.Save();
+        }
+
+        public void Delete(Course course)
+        {
+            this.courses.Delete(course);
+        }
     }
 }

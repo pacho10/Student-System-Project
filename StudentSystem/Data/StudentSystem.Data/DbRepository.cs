@@ -3,6 +3,7 @@ using StudentSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +46,17 @@ namespace StudentSystem.Data
         public void Add(T entity)
         {
             this.DbSet.Add(entity);
+        }
+
+        public void Update(T entity)
+        {
+            DbEntityEntry entry = this.Context.Entry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                this.DbSet.Attach(entity);
+            }
+
+            entry.State = EntityState.Modified;
         }
 
         public void Delete(T entity)

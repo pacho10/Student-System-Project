@@ -32,6 +32,11 @@ namespace StudentSystem.Data
             return new ApplicationDbContext();
         }
 
+        DbSet<TEntity> IApplicationDbContext.Set<TEntity>()
+        {
+            return base.Set<TEntity>();
+        }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
