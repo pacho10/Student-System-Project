@@ -14,6 +14,8 @@ namespace StudentSystem.Web.App_Start
     using StudentSystem.Services;
     using StudentSystem.Models;
     using System.Data.Entity;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     public static class NinjectWebCommon 
     {
@@ -72,6 +74,7 @@ namespace StudentSystem.Web.App_Start
             kernel.Bind(typeof(ICourseService)).To(typeof(CourseService));
             kernel.Bind(typeof(ICategoryService)).To(typeof(CategoryService));
             kernel.Bind(typeof(IUserService)).To(typeof(UserService));
+            kernel.Bind(typeof(IUserStore<User>)).To(typeof(UserStore<User>));
         }        
     }
 }

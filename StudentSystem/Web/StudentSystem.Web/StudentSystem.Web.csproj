@@ -199,7 +199,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\CourseGridController.cs" />
-    <Compile Include="Areas\Administration\ViewModels\CategoryController.cs" />
+    <Compile Include="Areas\Administration\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Administration\ViewModels\CategoryViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\CourseGridViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />

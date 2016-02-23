@@ -34,10 +34,10 @@ namespace StudentSystem.Models
             set { this.marks = value; }
         }
 
-        public virtual ICollection<Course> Courses 
+        public virtual ICollection<Course> Courses
         {
-            get { return this.courses; }
-            set { this.courses = value; } 
+            get { return this.courses; } 
+            set {this.courses = value; } 
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)

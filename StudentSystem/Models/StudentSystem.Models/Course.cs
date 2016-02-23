@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -9,12 +10,10 @@ namespace StudentSystem.Models
 {
     public class Course : BaseModel<int>
     {
-        private ICollection<User> users;
         private ICollection<Material> materials;
 
         public Course()
         {
-            this.Users = new HashSet<User>();
             this.Materials = new HashSet<Material>();
         }
 
@@ -26,11 +25,9 @@ namespace StudentSystem.Models
 
         public virtual Category Category { get; set; }
 
-        public virtual ICollection<User> Users 
-        {
-            get { return this.users; }
-            set { this.users = value; }
-        }
+        public string UserId { get; set; }
+
+        public virtual User User { get; set; }
 
         public virtual ICollection<Material> Materials 
         {

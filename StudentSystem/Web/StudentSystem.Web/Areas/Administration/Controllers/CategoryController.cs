@@ -8,6 +8,7 @@ using StudentSystem.Models;
 
 namespace StudentSystem.Web.Areas.Administration.ViewModels
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private ICategoryService categories;

@@ -24,7 +24,7 @@
                 <a href="/Course/Detail/@item.Id">@item.Title</a>
             </td>
             <td>
-                @Html.ActionLink("join", "Join", "Course", new  { @class = "btn btn-default", @id = item.Id })
+                <a href="/Course/Join/@item.Id" class="btn btn-default">Join</a>
             </td>
         </tr>
     }

@@ -5,6 +5,8 @@ namespace StudentSystem.Services
 {
     public interface IUserService
     {
-        IQueryable<User> All();
+        //IQueryable<User> All();
+
+        //void Save();
     }
 }

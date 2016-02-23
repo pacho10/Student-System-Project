@@ -13,6 +13,7 @@ using StudentSystem.Data;
 
 namespace StudentSystem.Web.Areas.Administration.Controllers
 {
+    [Authorize(Roles="Administrator")]
     public class CourseGridController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

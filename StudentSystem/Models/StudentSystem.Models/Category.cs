@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using StudentSystem.Data.Common;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StudentSystem.Models
 {

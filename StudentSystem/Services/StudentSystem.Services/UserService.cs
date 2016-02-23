@@ -11,16 +11,22 @@ namespace StudentSystem.Services
 {
     public class UserService : IUserService
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        //private IDbRepository<User> users;
+        ////ApplicationDbContext db = new ApplicationDbContext();
 
-        //public UserService(IDbRepository<User>users)
+        //public UserService(IDbRepository<User> users)
         //{
         //    this.users = users;
         //}
 
-        public IQueryable<User> All()
-        {
-            return this.db.Users;
-        }
+        //public IQueryable<User> All()
+        //{
+        //    return this.users.All();
+        //}
+
+        //public void Save()
+        //{
+        //    this.users.Save();
+        //}
     }
 }
