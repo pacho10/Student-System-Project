@@ -8,14 +8,17 @@ using System.Web;
 using System.Web.Mvc;
 using StudentSystem.Web.Infrastructure;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNet.Identity;
+using StudentSystem.Services;
 
 namespace StudentSystem.Web.Controllers
 {
     public class CourseController : BaseController
     {
-        private IDbRepository<Course> courses;
+        private ICourseService courses;
+        private IUserService users;
 
-        public CourseController(IDbRepository<Course> courses)
+        public CourseController(ICourseService courses)
         {
             this.courses = courses;
         }
@@ -37,6 +40,14 @@ namespace StudentSystem.Web.Controllers
             };
 
             return View(viewModel);
+        }
+
+
+        public ActionResult Join(int id)
+        {
+            var currentUserId = this.User.Identity.GetUserId();
+
+            return null;
         }
     }
 }

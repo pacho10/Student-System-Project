@@ -1,0 +1,31 @@
+﻿@model IEnumerable<StudentSystem.Web.ViewModel.CourseViewModel>
+@{
+    ViewBag.Title = "Join To Course";
+}
+
+<div class="jumbotron">
+    <h1 class="text-center">@ViewBag.Title</h1>
+
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>Category</th>
+        <th>Course Name</th>
+        <th>Join</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Category
+            </td>
+            <td>
+                <a href="/Course/Detail/@item.Id">@item.Title</a>
+            </td>
+            <td>
+                @Html.ActionLink("join", "Join", "Course", new  { @class = "btn btn-default", @id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

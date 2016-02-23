@@ -3,10 +3,8 @@ using System;
 using System.Linq;
 namespace StudentSystem.Services
 {
-    public interface ICategoryService
+    public interface IUserService
     {
-        IQueryable<Category> All();
-
-        void Add(Category category);
+        IQueryable<User> All();
     }
 }

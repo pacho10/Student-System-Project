@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudentSystem.Services
 {
-    public class CategoryService : StudentSystem.Services.ICategoryService
+    public class CategoryService : ICategoryService
     {
         private IDbRepository<Category> categories;
 
@@ -20,6 +20,12 @@ namespace StudentSystem.Services
         public IQueryable<Category> All()
         {
             return this.categories.All();
+        }
+
+        public void Add(Category category)
+        {
+            this.categories.Add(category);
+            this.categories.Save();
         }
     }
 }

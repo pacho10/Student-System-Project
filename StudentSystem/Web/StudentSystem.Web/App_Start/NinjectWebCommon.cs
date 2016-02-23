@@ -71,6 +71,7 @@ namespace StudentSystem.Web.App_Start
             kernel.Bind(typeof(IDbRepository<>)).To(typeof(DbRepository<>));
             kernel.Bind(typeof(ICourseService)).To(typeof(CourseService));
             kernel.Bind(typeof(ICategoryService)).To(typeof(CategoryService));
+            kernel.Bind(typeof(IUserService)).To(typeof(UserService));
         }        
     }
 }

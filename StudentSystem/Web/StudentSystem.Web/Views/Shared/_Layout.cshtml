@@ -25,6 +25,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Courses", "Index", "CourseGrid", new { area = "Administration" }, null)</li>
+                    <li>@Html.ActionLink("Create Category", "Index", "Category", new { area = "Administration" }, null)</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
