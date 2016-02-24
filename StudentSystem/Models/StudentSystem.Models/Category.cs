@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using StudentSystem.Data.Common;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace StudentSystem.Models
+﻿namespace StudentSystem.Models
 {
+    using System.Collections.Generic;
+    using StudentSystem.Data.Common;
+
     public class Category : BaseModel<int>
     {
         private ICollection<Course> courses;

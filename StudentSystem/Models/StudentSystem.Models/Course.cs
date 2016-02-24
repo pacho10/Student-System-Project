@@ -1,13 +1,8 @@
-﻿using StudentSystem.Data.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-
-namespace StudentSystem.Models
+﻿namespace StudentSystem.Models
 {
+    using System.Collections.Generic;
+    using StudentSystem.Data.Common;
+
     public class Course : BaseModel<int>
     {
         private ICollection<Material> materials;

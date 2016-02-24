@@ -1,21 +1,17 @@
-﻿﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using Kendo.Mvc.Extensions;
-using Kendo.Mvc.UI;
-using StudentSystem.Models;
-using StudentSystem.Data;
-using StudentSystem.Web.Controllers;
-using StudentSystem.Services;
-using Microsoft.AspNet.Identity;
-
-namespace StudentSystem.Web.Areas.Administration.Controllers
+﻿﻿namespace StudentSystem.Web.Areas.Administration.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+
+    using Microsoft.AspNet.Identity;
+
+    using StudentSystem.Models;
+    using StudentSystem.Services;
+    using StudentSystem.Web.Controllers;
+
     [Authorize(Roles="Administrator")]
     public class CourseGridController : BaseController
     {
@@ -36,7 +32,7 @@ namespace StudentSystem.Web.Areas.Administration.Controllers
         public ActionResult Courses_Read([DataSourceRequest]DataSourceRequest request)
         {
             //IQueryable<Course> courses = db.Courses;
-            DataSourceResult result = this.courses.GetAll().ToDataSourceResult(request, course => new
+            DataSourceResult result = this.courses.GetAll().Where(x => x.IsDeleted == false).ToDataSourceResult(request, course => new
             {
                 Id = course.Id,
                 Title = course.Title,

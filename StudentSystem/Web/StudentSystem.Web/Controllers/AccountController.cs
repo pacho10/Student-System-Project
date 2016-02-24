@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Owin;
-using StudentSystem.Web.Models;
-using StudentSystem.Models;
-
-namespace StudentSystem.Web.Controllers
+﻿namespace StudentSystem.Web.Controllers
 {
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+
+    using StudentSystem.Models;
+    using StudentSystem.Web.Models;
+
     [Authorize]
     public class AccountController : Controller
     {

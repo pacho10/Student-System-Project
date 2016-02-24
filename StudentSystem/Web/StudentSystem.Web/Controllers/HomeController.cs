@@ -1,14 +1,12 @@
-﻿using StudentSystem.Services;
-using StudentSystem.Web.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using StudentSystem.Web.Infrastructure;
-
-namespace StudentSystem.Web.Controllers
+﻿namespace StudentSystem.Web.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using StudentSystem.Services;
+    using StudentSystem.Web.Infrastructure;
+    using StudentSystem.Web.ViewModel;
+
     public class HomeController : BaseController
     {
         //private ICategoryService categories;
@@ -22,7 +20,7 @@ namespace StudentSystem.Web.Controllers
 
         public ActionResult Index()
         {
-            var viewModel = this.courses.GetAll().To<CourseViewModel>().ToList();
+            var viewModel = this.courses.GetAll().Where(x => x.IsDeleted == false).To<CourseViewModel>().ToList();
 
             return View(viewModel);
         }

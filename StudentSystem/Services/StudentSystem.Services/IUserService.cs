@@ -1,7 +1,4 @@
-﻿using StudentSystem.Models;
-using System;
-using System.Linq;
-namespace StudentSystem.Services
+﻿namespace StudentSystem.Services
 {
     public interface IUserService
     {

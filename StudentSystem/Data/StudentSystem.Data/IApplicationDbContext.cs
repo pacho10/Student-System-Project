@@ -1,9 +1,11 @@
-﻿using StudentSystem.Models;
-using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-namespace StudentSystem.Data
+﻿namespace StudentSystem.Data
 {
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+
+    using StudentSystem.Models;
+
     public interface IApplicationDbContext : IDisposable
     {
         int SaveChanges();

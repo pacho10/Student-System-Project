@@ -1,13 +1,9 @@
-﻿using StudentSystem.Data;
-using StudentSystem.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StudentSystem.Services
+﻿namespace StudentSystem.Services
 {
+    using System.Linq;
+    using StudentSystem.Data;
+    using StudentSystem.Models;
+
     public class CourseService : ICourseService
     {
         private IDbRepository<Course> courses;

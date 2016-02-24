@@ -1,13 +1,14 @@
-﻿using AutoMapper;
-using StudentSystem.Web.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
-
-namespace StudentSystem.Web.App_Start
+﻿namespace StudentSystem.Web.App_Start
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
+    using AutoMapper;
+
+    using StudentSystem.Web.Infrastructure;
+
     public class AutoMapperConfig
     {
         public static MapperConfiguration Configuration { get; private set; }

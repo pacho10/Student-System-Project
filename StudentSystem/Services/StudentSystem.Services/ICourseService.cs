@@ -1,8 +1,8 @@
-﻿using StudentSystem.Models;
-using System;
-using System.Linq;
-namespace StudentSystem.Services
+﻿namespace StudentSystem.Services
 {
+    using System.Linq;
+    using StudentSystem.Models;
+
     public interface ICourseService
     {
         IQueryable<Course> GetAll();

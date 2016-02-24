@@ -1,12 +1,10 @@
-﻿using StudentSystem.Models;
-using StudentSystem.Web.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace StudentSystem.Web.ViewModel
+﻿namespace StudentSystem.Web.ViewModel
 {
+    using System.Collections.Generic;
+
+    using StudentSystem.Models;
+    using StudentSystem.Web.Infrastructure;
+
     public class CourseDetailViewModel : IMapFrom<Course>, IHaveCustomMappings
     {
         public string Title { get; set; }

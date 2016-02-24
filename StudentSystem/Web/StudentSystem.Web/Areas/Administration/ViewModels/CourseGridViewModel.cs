@@ -1,12 +1,9 @@
-﻿using StudentSystem.Models;
-using StudentSystem.Web.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace StudentSystem.Web.Areas.Administration.ViewModels
+﻿namespace StudentSystem.Web.Areas.Administration.ViewModels
 {
+    using System;
+    using StudentSystem.Models;
+    using StudentSystem.Web.Infrastructure;
+
     public class CourseGridViewModel : IMapFrom<Course>, IHaveCustomMappings
     {
         public int Id { get; set; }

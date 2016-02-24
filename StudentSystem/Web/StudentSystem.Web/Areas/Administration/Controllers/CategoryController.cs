@@ -1,13 +1,13 @@
-﻿using StudentSystem.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using StudentSystem.Models;
-
-namespace StudentSystem.Web.Areas.Administration.ViewModels
+﻿namespace StudentSystem.Web.Areas.Administration.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using StudentSystem.Models;
+    using StudentSystem.Services;
     [Authorize]
     public class CategoryController : Controller
     {

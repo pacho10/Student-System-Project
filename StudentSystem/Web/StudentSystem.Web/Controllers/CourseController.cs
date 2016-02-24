@@ -1,19 +1,14 @@
-﻿using StudentSystem.Data;
-using StudentSystem.Models;
-using StudentSystem.Web.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using StudentSystem.Web.Infrastructure;
-using AutoMapper.QueryableExtensions;
-using Microsoft.AspNet.Identity;
-using StudentSystem.Services;
-using Microsoft.AspNet.Identity.EntityFramework;
-
-namespace StudentSystem.Web.Controllers
+﻿namespace StudentSystem.Web.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using Microsoft.AspNet.Identity;
+
+    using StudentSystem.Services;
+    using StudentSystem.Web.Infrastructure;
+    using StudentSystem.Web.ViewModel;
+
     [Authorize]
     public class CourseController : BaseController
     {
@@ -31,7 +26,7 @@ namespace StudentSystem.Web.Controllers
         // GET: Course
         public ActionResult Index()
         {
-            var viewModel = this.courses.GetAll().To<CourseViewModel>().ToList();
+            var viewModel = this.courses.GetAll().Where(x => x.IsDeleted == false).To<CourseViewModel>().ToList();
             return View(viewModel);
         }
 

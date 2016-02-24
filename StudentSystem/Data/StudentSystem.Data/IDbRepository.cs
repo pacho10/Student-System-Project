@@ -1,14 +1,8 @@
-﻿using StudentSystem.Data.Common;
-using StudentSystem.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StudentSystem.Data
+﻿namespace StudentSystem.Data
 {
+    using System.Linq;
+    using StudentSystem.Data.Common;
+
     public interface IDbRepository<T> : IDbRepository<T, int>
         where T : BaseModel<int>
     {

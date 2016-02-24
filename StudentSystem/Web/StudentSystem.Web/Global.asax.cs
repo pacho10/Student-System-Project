@@ -23,7 +23,8 @@ namespace StudentSystem.Web
             var autoMapperConfig = new AutoMapperConfig();
             autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
 
-            //ApplicationDbContext.Create().Database.Initialize(true);
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
         }
     }
 }
