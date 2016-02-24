@@ -10,13 +10,23 @@ using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using StudentSystem.Models;
 using StudentSystem.Data;
+using StudentSystem.Web.Controllers;
+using StudentSystem.Services;
+using Microsoft.AspNet.Identity;
 
 namespace StudentSystem.Web.Areas.Administration.Controllers
 {
     [Authorize(Roles="Administrator")]
-    public class CourseGridController : Controller
+    public class CourseGridController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
+
+        private ICourseService courses;
+
+        public CourseGridController(ICourseService courses)
+        {
+            this.courses = courses;
+        }
 
         public ActionResult Index()
         {
@@ -25,8 +35,9 @@ namespace StudentSystem.Web.Areas.Administration.Controllers
 
         public ActionResult Courses_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<Course> courses = db.Courses;
-            DataSourceResult result = courses.ToDataSourceResult(request, course => new {
+            //IQueryable<Course> courses = db.Courses;
+            DataSourceResult result = this.courses.GetAll().ToDataSourceResult(request, course => new
+            {
                 Id = course.Id,
                 Title = course.Title,
                 Type = course.Type,
@@ -35,55 +46,68 @@ namespace StudentSystem.Web.Areas.Administration.Controllers
                 IsDeleted = course.IsDeleted,
                 DeletedOn = course.DeletedOn
             });
-
             return Json(result);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Courses_Create([DataSourceRequest]DataSourceRequest request, Course course)
         {
+            var newId = 0;
             if (ModelState.IsValid)
             {
                 var entity = new Course
                 {
                     Title = course.Title,
                     Type = course.Type,
+                    CategoryId = 1,
                     CreatedOn = course.CreatedOn,
                     ModifiedOn = course.ModifiedOn,
                     IsDeleted = course.IsDeleted,
-                    DeletedOn = course.DeletedOn
+                    DeletedOn = course.DeletedOn,
+                    UserId = this.User.Identity.GetUserId()
                 };
 
-                db.Courses.Add(entity);
-                db.SaveChanges();
-                course.Id = entity.Id;
+                this.courses.Add(entity);
+                this.courses.Save();
+                newId = entity.Id;
             }
 
-            return Json(new[] { course }.ToDataSourceResult(request, ModelState));
+            var courseToDisplay = this.courses.GetAll().FirstOrDefault(x => x.Id == newId);
+
+            return Json(new[] { courseToDisplay }.ToDataSourceResult(request, ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Courses_Update([DataSourceRequest]DataSourceRequest request, Course course)
         {
-            if (ModelState.IsValid)
-            {
-                var entity = new Course
-                {
-                    Id = course.Id,
-                    Title = course.Title,
-                    Type = course.Type,
-                    CreatedOn = course.CreatedOn,
-                    ModifiedOn = course.ModifiedOn,
-                    IsDeleted = course.IsDeleted,
-                    DeletedOn = course.DeletedOn
-                };
+            //if (ModelState.IsValid)
+            //{
+                var entity = this.courses.GetById(course.Id);
+                entity.Title = course.Title;
+                entity.Type = course.Type;
+                entity.CreatedOn = course.CreatedOn;
+                entity.ModifiedOn = course.ModifiedOn;
+                entity.IsDeleted = course.IsDeleted;
+                entity.DeletedOn = course.DeletedOn;
+                entity.UserId = this.User.Identity.GetUserId();
 
-                db.Courses.Attach(entity);
-                db.Entry(entity).State = EntityState.Modified;
-                db.SaveChanges();
-            }
+                //var entity = new Course
+                //{
+                //    Id = course.Id,
+                //    Title = course.Title,
+                //    Type = course.Type,
+                //    CreatedOn = course.CreatedOn,
+                //    ModifiedOn = course.ModifiedOn,
+                //    IsDeleted = course.IsDeleted,
+                //    DeletedOn = course.DeletedOn
+                //};
 
-            return Json(new[] { course }.ToDataSourceResult(request, ModelState));
+                this.courses.Update(entity);
+            //}
+
+            var courseToDisplay = this.courses.GetAll().FirstOrDefault(x => x.Id == course.Id);
+
+            return Json(new[] { courseToDisplay }.ToDataSourceResult(request, ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -91,20 +115,20 @@ namespace StudentSystem.Web.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                var entity = new Course
-                {
-                    Id = course.Id,
-                    Title = course.Title,
-                    Type = course.Type,
-                    CreatedOn = course.CreatedOn,
-                    ModifiedOn = course.ModifiedOn,
-                    IsDeleted = course.IsDeleted,
-                    DeletedOn = course.DeletedOn
-                };
+                var entityToDelete = this.courses.GetById(course.Id);
+                this.courses.Delete(entityToDelete);
+                this.courses.Save();
 
-                db.Courses.Attach(entity);
-                db.Courses.Remove(entity);
-                db.SaveChanges();
+                //var entity = new Course
+                //{
+                //    Id = course.Id,
+                //    Title = course.Title,
+                //    Type = course.Type,
+                //    CreatedOn = course.CreatedOn,
+                //    ModifiedOn = course.ModifiedOn,
+                //    IsDeleted = course.IsDeleted,
+                //    DeletedOn = course.DeletedOn
+                //};
             }
 
             return Json(new[] { course }.ToDataSourceResult(request, ModelState));
@@ -112,7 +136,7 @@ namespace StudentSystem.Web.Areas.Administration.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            this.courses.Dispose();
             base.Dispose(disposing);
         }
     }

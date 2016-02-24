@@ -74,5 +74,10 @@ namespace StudentSystem.Data
         {
             this.Context.SaveChanges();
         }
+
+        public void Dispose()
+        {
+            this.Context.Dispose();
+        }
     }
 }

@@ -696,8 +696,6 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
@@ -738,6 +736,8 @@
     <Content Include="Scripts\Kendo\kendo.aspnetmvc.min.js.map" />
     <Content Include="Views\Course\Detail.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

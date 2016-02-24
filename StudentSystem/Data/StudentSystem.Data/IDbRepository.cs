@@ -32,5 +32,7 @@ namespace StudentSystem.Data
         void HardDelete(T entity);
 
         void Save();
+
+        void Dispose();
     }
 }

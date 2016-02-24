@@ -16,5 +16,7 @@ namespace StudentSystem.Services
         void Delete(Course course);
 
         void Save();
+
+        void Dispose();
     }
 }

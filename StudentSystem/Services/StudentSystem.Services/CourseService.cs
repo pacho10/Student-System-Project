@@ -48,5 +48,10 @@ namespace StudentSystem.Services
         {
             this.courses.Save();
         }
+
+        public void Dispose()
+        {
+            this.courses.Dispose();
+        }
     }
 }
